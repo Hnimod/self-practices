@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////////////
+//001//////////////////////////////////////////////////////////////////
 // const word = 'dda' | 'sad';
 // const map = ['dad', 'add', 'sad', 'bad', 'badminton', 'hand', 'ass'];
 // 'dda' => ['add', 'dad']
@@ -16,12 +16,12 @@ export const wordMatches = (word: string, map: string[]): string[] => {
   return result;
 };
 
-////////////////////////////////////////////////////////////////////
+//002//////////////////////////////////////////////////////////////////
 export const reverseString = (str: string): string => {
   return str.split('').reverse().join('');
 };
 
-////////////////////////////////////////////////////////////////////
+//003//////////////////////////////////////////////////////////////////
 export const reverseInt = (int: number): number => {
   let k = 1;
   if (int < 0) k = -1;
@@ -29,7 +29,7 @@ export const reverseInt = (int: number): number => {
   return result * k;
 };
 
-////////////////////////////////////////////////////////////////////
+//004//////////////////////////////////////////////////////////////////
 export const capitalizeLetters = (str: string): string => {
   const result = [];
   for (let word of str.split(' ')) {
@@ -40,7 +40,7 @@ export const capitalizeLetters = (str: string): string => {
   return result.join(' ');
 };
 
-////////////////////////////////////////////////////////////////////
+//005//////////////////////////////////////////////////////////////////
 // 'javascript' => 'a'
 export const maxCharacter = (str: string): string => {
   const map: any = {};
@@ -66,7 +66,7 @@ export const maxCharacter = (str: string): string => {
   return '';
 };
 
-////////////////////////////////////////////////////////////////////
+//006//////////////////////////////////////////////////////////////////
 export const fizzBuzz = (): void => {
   for (let i = 1; i <= 100; i++) {
     if (i % 3 === 0 && i % 5 === 0) {
@@ -81,7 +81,7 @@ export const fizzBuzz = (): void => {
   }
 };
 
-////////////////////////////////////////////////////////////////////
+//007//////////////////////////////////////////////////////////////////
 // 'Hello there, my name is Minh' => ['Hello', 'there']
 export const logestWord = (sen: string): string[] => {
   let result: string[] = [];
@@ -103,7 +103,7 @@ export const logestWord = (sen: string): string[] => {
   return result;
 };
 
-////////////////////////////////////////////////////////////////////
+//008//////////////////////////////////////////////////////////////////
 // ([1,2,3,4,5,6,7], 3) => [[1,2,3],[4,5,6], [7]]
 export const chunkArray = (arr: number[], len: number): any[] => {
   let result: any[] = [];
@@ -113,7 +113,7 @@ export const chunkArray = (arr: number[], len: number): any[] => {
   return result;
 };
 
-////////////////////////////////////////////////////////////////////
+//009//////////////////////////////////////////////////////////////////
 // [[1,2,3],[4,5,6],[7]] => [1,2,3,4,5,6,7]
 export const flatternArray = (arr: any[]): number[] => {
   return arr.reduce((accumulator: number[], currentValue: number[]) =>
@@ -121,7 +121,7 @@ export const flatternArray = (arr: any[]): number[] => {
   );
 };
 
-////////////////////////////////////////////////////////////////////
+//010//////////////////////////////////////////////////////////////////
 // 'ABAZDC', 'BACBAD' => 'ABAD'
 // 'AGGTAB', 'GXTXAYB' => 'GTAB'
 // 'aaaa', 'aa' => 'aa'
@@ -153,7 +153,7 @@ export const longestSequence = (str1: string, str2: string): string => {
   return 'error';
 };
 
-////////////////////////////////////////////////////////////////////
+//011//////////////////////////////////////////////////////////////////
 // 'c', 'occurent' => 2
 export const occurent = (char: string, str: string): number => {
   let strArr = str.split('');
@@ -161,7 +161,7 @@ export const occurent = (char: string, str: string): number => {
   return strArr.length;
 };
 
-////////////////////////////////////////////////////////////////////
+//012//////////////////////////////////////////////////////////////////
 // [1,2,3,3,4,5,4] => [3,4]
 export const findDuplicate = (arr: number[]): number[] => {
   let result: number[] = [];
@@ -178,7 +178,7 @@ export const findDuplicate = (arr: number[]): number[] => {
   return result;
 };
 
-////////////////////////////////////////////////////////////////////
+//013//////////////////////////////////////////////////////////////////
 // 12258 => ['abbeh', 'aveh', 'abyh', 'lbeh', 'lyh']
 // [1,2,2,5,8] => ['1:2:2:5:8', '12:2:5:8', '1:22:5:8', '1:2:25:8', '12:25:8']
 const wordMap: { [key: string]: number } = {
@@ -199,7 +199,6 @@ const wordMapHelper = (arr: string[]): string => {
   }
   return tempArr.join('');
 };
-
 export const alphabetOrderTranslate = (num: number): string[] => {
   let result: string[] = [];
   let arrNum: any[] = [];
@@ -237,4 +236,74 @@ export const alphabetOrderTranslate = (num: number): string[] => {
   }
 
   return final;
+};
+
+//014//////////////////////////////////////////////////////////////////
+// add sum regarless of arguments
+export const addAll = (...nums: number[]): number => {
+  return nums.reduce((a, b) => a + b);
+};
+
+//015//////////////////////////////////////////////////////////////////
+// 10 => 1 + 2 + 3 + 5 + 7
+export const sumAllPrimes = (num: number): number => {
+  let result: number = 0;
+  for (let i = 2; i <= num; i++) {
+    let check = 0;
+    for (let j = 1; j <= i; j++) {
+      if (i % j === 0) check = check + 1;
+    }
+    if (check <= 2) {
+      result += i;
+    }
+  }
+  return result;
+};
+
+//016//////////////////////////////////////////////////////////////////
+// ([2,3,4,6,6,'hello'], 2, 6) => [3,4,'hello']
+export const seekAndDestroy = (arr: any[], ...target: any[]): any[] => {
+  for (const val of target) {
+    arr = arr.filter((el) => el !== val);
+  }
+  return arr;
+};
+
+//017//////////////////////////////////////////////////////////////////
+// [-1,15,19,17,-1,-1,16,18] => [-1,15,16,17,-1,-1,18,19]
+export const sortWithUnmoveable = (arr: number[]): number[] => {
+  const base: number[] = [];
+  for (const num of arr) {
+    if (num === -1) {
+      base.push(-1);
+    } else base.push(0);
+  }
+  const extracted = arr.filter((el) => el !== -1);
+  extracted.sort();
+
+  for (const num of extracted) {
+    const index = base.indexOf(0);
+    base.splice(index, 1, num);
+  }
+
+  return base;
+};
+
+//018//////////////////////////////////////////////////////////////////
+// 'abce' => 'd'
+// 'abcdefghjklmno' => 'i'
+// 'abcdefghijklmnopqrstuvwxyz' => undefined
+const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+export const missingLetters = (str: string): string | undefined => {
+  const target = str.split('');
+  const base = alphabet.split('');
+  const sample = base.slice(
+    base.indexOf(target[0]),
+    base.indexOf(target[target.length - 1]) + 1
+  );
+
+  for (let i = 0; i < target.length; i++) {
+    if (target[i] !== sample[i]) return sample[i];
+  }
+  return undefined;
 };

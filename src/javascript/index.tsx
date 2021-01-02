@@ -8,7 +8,7 @@ const JavaScript: React.FC = () => {
   };
 
   useEffect(() => {
-    showResult(prob.alphabetOrderTranslate(12258));
+    showResult(prob.missingLetters('abcdefghjklmno'));
   }, []);
 
   if (result) {
