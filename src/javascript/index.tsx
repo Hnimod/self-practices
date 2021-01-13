@@ -8,7 +8,7 @@ const JavaScript: React.FC = () => {
   };
 
   useEffect(() => {
-    showResult(prob.missingLetters('abcdefghjklmno'));
+    showResult(prob.generalConsole());
   }, []);
 
   if (result) {

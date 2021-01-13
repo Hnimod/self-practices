@@ -1,3 +1,5 @@
+//000//////////////////////////////////////////////////////////////////
+export const generalConsole = (): void => {};
 //001//////////////////////////////////////////////////////////////////
 // const word = 'dda' | 'sad';
 // const map = ['dad', 'add', 'sad', 'bad', 'badminton', 'hand', 'ass'];
@@ -293,8 +295,8 @@ export const sortWithUnmoveable = (arr: number[]): number[] => {
 // 'abce' => 'd'
 // 'abcdefghjklmno' => 'i'
 // 'abcdefghijklmnopqrstuvwxyz' => undefined
-const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 export const missingLetters = (str: string): string | undefined => {
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz';
   const target = str.split('');
   const base = alphabet.split('');
   const sample = base.slice(
