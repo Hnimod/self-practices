@@ -1113,6 +1113,31 @@ class PROBLEM_SOVLING {
     if (max === 0) return -1;
     return max;
   }
+  catAndMouse(x, y, z) {
+    if (x < y) {
+      if (z > y) {
+        return 'Cat B';
+      } else if (z <= y && z >= x) {
+        if (Math.abs(y - z) < Math.abs(x - z)) {
+          return 'Cat B';
+        } else if (Math.abs(y - z) === Math.abs(x - z)) {
+          return 'Mouse C';
+        } else return 'Cat A';
+      } else return 'Cat A';
+    } else if (x === y) {
+      return 'Mouse C';
+    } else {
+      if (z > x) {
+        return 'Cat A';
+      } else if (z <= x && z >= y) {
+        if (Math.abs(x - z) < Math.abs(y - z)) {
+          return 'Cat A';
+        } else if (Math.abs(y - z) === Math.abs(x - z)) {
+          return 'Mouse C';
+        } else return 'Cat B';
+      } else return 'Cat B';
+    }
+  }
 }
 
-function catAndMouse(x, y, z) {}
+// console.log(catAndMouse(47, 30, 6));
