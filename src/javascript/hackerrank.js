@@ -436,48 +436,49 @@ class SORTING {
 
 // SEARCHING ------------------------------------------
 // eslint-disable-next-line
-function binarySearch(sortedArray, key) {
-  let start = 0;
-  let end = sortedArray.length - 1;
+class SEARCHING {
+  binarySearch(sortedArray, key) {
+    let start = 0;
+    let end = sortedArray.length - 1;
 
-  while (start <= end) {
-    let middle = Math.floor((start + end) / 2);
+    while (start <= end) {
+      let middle = Math.floor((start + end) / 2);
 
-    if (sortedArray[middle] === key) {
-      return middle;
-    } else if (sortedArray[middle] < key) {
-      start = middle + 1;
-    } else {
-      end = middle - 1;
+      if (sortedArray[middle] === key) {
+        return middle;
+      } else if (sortedArray[middle] < key) {
+        start = middle + 1;
+      } else {
+        end = middle - 1;
+      }
     }
+    return -1;
   }
-  return -1;
-}
-// eslint-disable-next-line
-function depthFirstSearch(start, target) {
-  console.log('Visiting Node ' + start.value);
-  if (start.value === target) {
-    console.log("Found the node we're looking for!");
-    return start;
-  }
-
-  for (let i = 0; i < start.children.length; i++) {
-    const result = depthFirstSearch(start.children[i], target);
-    if (result != null) {
-      return result;
+  depthFirstSearch(start, target) {
+    console.log('Visiting Node ' + start.value);
+    if (start.value === target) {
+      console.log("Found the node we're looking for!");
+      return start;
     }
+
+    for (let i = 0; i < start.children.length; i++) {
+      const result = depthFirstSearch(start.children[i], target);
+      if (result != null) {
+        return result;
+      }
+    }
+
+    console.log(
+      'Went through all children of ' +
+        start.value +
+        ", returning to it's parent."
+    );
+    return null;
   }
 
-  console.log(
-    'Went through all children of ' +
-      start.value +
-      ", returning to it's parent."
-  );
-  return null;
+  // function breadthFirstSearch() {}
+  // function levelOrderSearch() {}
 }
-
-// function breadthFirstSearch() {}
-// function levelOrderSearch() {}
 
 // LINKED LIST ----------------------------------------
 // eslint-disable-next-line
@@ -828,19 +829,6 @@ class PROBLEM_SOVLING {
 
     return valley;
   }
-  jumpingOnClouds(c) {
-    let jumps = 0;
-    let index = 0;
-
-    while (index < c.length - 1) {
-      if (index + 2 > c.length || c[index + 2] === 1) {
-        index = index + 1;
-      } else index = index + 2;
-      jumps++;
-    }
-
-    return jumps;
-  }
   repeatedString(s, n) {
     let count = 0;
 
@@ -1138,6 +1126,184 @@ class PROBLEM_SOVLING {
       } else return 'Cat B';
     }
   }
-}
+  pickingNumbers(a) {
+    let max = 0;
+    for (let i = 0; i < a.length; ++i) {
+      for (let j = i + 1; j < a.length; ++j) {
+        let temp = [a[i]];
+        for (let k = j; k < a.length; ++k) {
+          if (temp.length < 2 && Math.abs(a[k] - a[i]) <= 1) {
+            temp.push(a[k]);
+            continue;
+          }
+          if (temp.includes(a[k])) {
+            temp.push(a[k]);
+          }
+        }
+        console.log(temp);
+        if (temp.length > max) max = temp.length;
+      }
+    }
+    return max;
+  }
+  hurdleRace(k, height) {
+    const max = Math.max(...height);
+    if (k >= max) return 0;
+    return max - k;
+  }
+  designerPdfViewer(h, word) {
+    const wordHeight = [];
+    for (let i = 0; i < word.length; ++i) {
+      wordHeight.push(h[word.charCodeAt(i) - 97]);
+    }
+    return Math.max(...wordHeight) * word.length;
+  }
+  utopianTree(n) {
+    let height = 1;
+    for (let i = 1; i <= n; ++i) {
+      if (i % 2 === 0) {
+        height = height + 1;
+      } else {
+        height = height * 2;
+      }
+    }
+    return height;
+  }
+  angryProfessor(k, a) {
+    let onTime = 0;
+    for (const time of a) {
+      if (time <= 0) ++onTime;
+      if (onTime >= k) return 'NO';
+    }
+    return 'YES';
+  }
+  beautifulDays(i, j, k) {
+    let count = 0;
+    for (let day = i; day <= j; ++day) {
+      if (
+        Math.abs(day - Number(String(day).split('').reverse().join(''))) % k ===
+        0
+      ) {
+        ++count;
+      }
+    }
+    return count;
+  }
+  viralAdvertising(n) {
+    let liked = 2;
+    let accuLikes = 2;
+    let shared;
+    for (let i = 2; i <= n; ++i) {
+      shared = liked * 3;
+      liked = Math.floor(shared / 2);
+      accuLikes += liked;
+    }
+    return accuLikes;
+  }
+  saveThePrisoner(n, m, s) {
+    while (true) {
+      if (m / n < 1) {
+        if (s + m - 1 === 0) return n;
+        if (s + m - 1 <= n) {
+          return s + m - 1;
+        } else {
+          return s + m - n - 1;
+        }
+      } else m = m % n;
+    }
+  }
+  circularArrayRotation(a, k, queries) {
+    for (let i = 1; i <= k; ++i) {
+      const el = a.pop();
+      a.unshift(el);
+    }
+    let res = [];
+    for (const index of queries) {
+      res.push(a[index]);
+    }
+    return res;
+  }
+  permutationEquation(p) {
+    let res = [];
+    const min = Math.min(...p);
+    const max = Math.max(...p);
+    for (let i = min; i <= max; ++i) {
+      const index = p.indexOf(i) + 1;
+      const found = p.indexOf(index) + 1;
+      res.push(found);
+    }
+    return res;
+  }
+  jumpingOnClouds(c) {
+    let jumps = 0;
+    let index = 0;
 
-// console.log(catAndMouse(47, 30, 6));
+    while (index < c.length - 1) {
+      if (index + 2 > c.length || c[index + 2] === 1) {
+        index = index + 1;
+      } else index = index + 2;
+      jumps++;
+    }
+
+    return jumps;
+  }
+  jumpingOnClouds2(c, k) {
+    let energy = 100;
+    let i = 0;
+
+    while (i !== 0 || energy === 100) {
+      if (c[i] === 1) energy = energy - 2;
+
+      --energy;
+      i = (i + k) % c.length;
+    }
+    return energy;
+  }
+  findDigits(n) {
+    let count = 0;
+    for (const num of String(n).split('')) {
+      if (n % Number(num) === 0) ++count;
+    }
+    return count;
+  }
+  appendAndDelete(s, t, k) {
+    if (s === t) return 'Yes';
+    let count = 0;
+    s = s.split('');
+    for (let i = 0; i < s.length; ++i) {
+      if (s[i] !== t[i] && t[i]) {
+        const remove = s.length - i;
+        for (let j = 1; j <= remove; ++j) {
+          s.pop();
+          ++count;
+          console.log(s, count);
+          if (count > k) return 'No';
+          if (s.join('') === t) return 'Yes';
+        }
+      }
+    }
+
+    if (count === 0 && s.length > t.length) {
+      if (s.length - t.length > k) return 'No';
+      return 'Yes';
+    }
+
+    for (let i = 0; i < t.length; ++i) {
+      if (s[i] !== t[i]) {
+        s.push(t[i]);
+        ++count;
+        console.log(s, count);
+        if (count > k) return 'No';
+        if (s.join('') === t) return 'Yes';
+      }
+    }
+
+    if (s === t) return 'Yes';
+    return 'No';
+  }
+  squares(a, b) {
+    const min = Math.ceil(Math.sqrt(a));
+    const max = Math.floor(Math.sqrt(b));
+    return max - min + 1;
+  }
+}
