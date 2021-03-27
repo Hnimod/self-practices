@@ -1,0 +1,23 @@
+.container {
+  border: solid 1px #000;
+  max-width: 400px;
+  padding: 1rem;
+}
+
+.add-task {
+  width: 100%;
+  display: flex;
+}
+
+.add-input {
+  flex: 1;
+}
+
+.task-container {
+  display: flex;
+  align-items: center;
+}
+
+.task-name {
+  flex: 1;
+}
